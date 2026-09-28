@@ -4778,3 +4778,44 @@ LagOptionGroup:AddSlider("PacketCount", {
         end
     })
 end
+
+-- ========================================
+-- 防御タブ
+-- ========================================
+local DefenseTab = Window:MakeTab({
+    Name = "防御",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+})
+
+-- ========================================
+-- Anti Banana [SIT]
+-- ========================================
+local AntiBananaActive = false
+
+DefenseTab:AddToggle({
+    Name = "Anti Banana [SIT]",
+    Default = false,
+    Callback = function(Value)
+        AntiBananaActive = Value
+        if Value then
+            task.spawn(function()
+                while AntiBananaActive do
+                    local char = game.Players.LocalPlayer.Character
+                    if char then
+                        local hum = char:FindFirstChildOfClass("Humanoid")
+                        local hrp = char:FindFirstChild("HumanoidRootPart")
+                        if hum and hrp and hum.Health > 0 then
+                            hum.Sit = true
+                            hum:ChangeState(Enum.HumanoidStateType.Running)
+                            local cam = workspace.CurrentCamera
+                            local vec = cam.CFrame.LookVector
+                            hrp.CFrame = CFrame.new(hrp.Position, hrp.Position + Vector3.new(vec.X, 0, vec.Z))
+                        end
+                    end
+                    task.wait()
+                end
+            end)
+        end
+    end
+})
