@@ -3193,7 +3193,14 @@ local GrabKickTab = Window:MakeTab({
     Icon = "rbxassetid://4483345998",
     PremiumOnly = false
 })
-
+-- ========================================
+-- 防御タブ
+-- ========================================
+local DefenseTab = Window:MakeTab({
+    Name = "防御",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+})
 local _GK_Players = game:GetService("Players")
 local _GK_RS = game:GetService("ReplicatedStorage")
 local _GK_RunService = game:GetService("RunService")
