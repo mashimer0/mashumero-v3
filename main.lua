@@ -1,3 +1,37 @@
+-- ========================================
+-- スプラッシュスクリーン（2秒フェードアウト）
+-- ========================================
+do
+    local player = game:GetService("Players").LocalPlayer
+    local gui = Instance.new("ScreenGui")
+    gui.Name = "MashumeroSplash"
+    gui.IgnoreGuiInset = true
+    gui.ResetOnSpawn = false
+    gui.Parent = player:WaitForChild("PlayerGui")
+
+    local img = Instance.new("ImageLabel")
+    img.Size = UDim2.new(1, 0, 1, 0)
+    img.Position = UDim2.new(0, 0, 0, 0)
+    img.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+    img.BackgroundTransparency = 0
+    img.BorderSizePixel = 0
+    img.Image = "rbxassetid://302960849"
+    img.ImageTransparency = 0
+    img.ScaleType = Enum.ScaleType.Crop
+    img.Parent = gui
+
+    local TweenService = game:GetService("TweenService")
+    local tweenInfo = TweenInfo.new(2, Enum.EasingStyle.Linear)
+    local tween = TweenService:Create(img, tweenInfo, {
+        ImageTransparency = 1,
+        BackgroundTransparency = 1,
+    })
+    tween:Play()
+    tween.Completed:Wait()
+
+    gui:Destroy()
+end
+-- ========================================
 -- Orion Lib ロード
 local OrionLib = loadstring(game:HttpGet('https://raw.githubusercontent.com/jadpy/suki/refs/heads/main/orion'))()
 
